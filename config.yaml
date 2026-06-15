@@ -1,0 +1,33 @@
+seed: 42
+
+data:
+  ticker: MARUTI.NS
+  lookback_days: 730
+  end_date: null
+  raw_csv: data/maruti_ohlcv.csv
+
+preprocessing:
+  features: [Open, High, Low, Close, Volume]
+  target: Close
+  window_size: 30
+  train_fraction: 0.65
+
+model:
+  lstm_units: [64, 32]
+  dropout: 0.2
+  learning_rate: 0.001
+
+baseline:
+  lstm_units: [16]
+  dropout: 0.0
+
+training:
+  epochs: 100
+  batch_size: 32
+  val_fraction: 0.15
+  early_stopping_patience: 20
+
+artifacts:
+  model_path: models/stacked_lstm.keras
+  scaler_path: models/scaler.joblib
+  results_dir: results
